@@ -30,7 +30,7 @@ app.controller('search', function ($scope, $http) {
     if ($scope.query != '') {
       // Clear current points in map
       $scope.data.clear();
-
+      $scope.loading = 'Loading...'
       $http.get('http://localhost:9000/api/search.json?q=' + $scope.query).
       success(function(data, status, headers, config) {
         //$scope.result = data;
@@ -47,6 +47,7 @@ app.controller('search', function ($scope, $http) {
             });
 
             $scope.data.addFeature(pointFeature);
+            $scope.loading = '';
           }
         }
       });
