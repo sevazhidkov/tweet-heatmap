@@ -13,7 +13,7 @@ app.controller('search', function ($scope, $http) {
     ],
     view: new ol.View({
       center: ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857'),
-      zoom: 4
+      zoom: 2
     })
   });
 
@@ -31,23 +31,25 @@ app.controller('search', function ($scope, $http) {
       // Clear current points in map
       $scope.data.clear();
 
-      $http.get('http://yandex.ru/?q=' + $scope.query).
-        success(function(data, status, headers, config) {
-          //$scope.result = data;
-          // created for owl range of data
-          var coord = ol.proj.transform([37.41, 8.82], 'EPSG:4326', 'EPSG:3857');
+      $http.get('http://loklak.org/api/search.json?q=' + $scope.query).
+      success(function(data, status, headers, config) {
+        //$scope.result = data;
+        for (var i = 0; i < data.statuses.length; i++) {
+          //$scope.places.push(data.statuses[i].text);
+          if (data.statuses[i].location_point) {
+            // created for owl range of data
+            var coord = ol.proj.transform(data.statuses[i].location_point, 'EPSG:4326', 'EPSG:3857');
 
-          var lonLat = new ol.geom.Point(coord);
+            var lonLat = new ol.geom.Point(coord);
 
-          var pointFeature = new ol.Feature({
-            geometry: lonLat
-          });
+            var pointFeature = new ol.Feature({
+              geometry: lonLat
+            });
 
-          $scope.data.addFeature(pointFeature);
-          //for (var i = 0; i < data.statuses.length; i++) {
-            //$scope.places.push(data.statuses[i].text);
-          //}
-        });
+            $scope.data.addFeature(pointFeature);
+          }
+        }
+      });
     }
   }
 });
