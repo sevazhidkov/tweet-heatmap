@@ -43,7 +43,8 @@ app.controller('search', function ($scope, $http) {
             var lonLat = new ol.geom.Point(coord);
 
             var pointFeature = new ol.Feature({
-              geometry: lonLat
+              geometry: lonLat,
+              weight: 20
             });
 
             $scope.data.addFeature(pointFeature);
