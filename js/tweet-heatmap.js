@@ -31,7 +31,7 @@ app.controller('search', function ($scope, $http) {
       // Clear current points in map
       $scope.data.clear();
       $scope.loading = 'Loading...'
-      $http.get('http://localhost:9000/api/search.json?q=' + $scope.query).
+      $http.get('http://loklag.org/api/search.json?q=' + $scope.query).
       success(function(data, status, headers, config) {
         //$scope.result = data;
         for (var i = 0; i < data.statuses.length; i++) {
