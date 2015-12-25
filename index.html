@@ -1,19 +1,36 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="tweet-heatmap">
-  <head>
-    <meta charset="utf-8">
-    <meta name="author" content="Seva Zhidkov">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Seva Zhidkov">
 
-    <title>Tweet Heatmap</title>
+  <link rel="stylesheet" href="http://openlayers.org/en/v3.12.1/css/ol.css" type="text/css">
+  <style>
+  .map {
+    height: 400px;
+    width: 100%;
+  }
+  </style>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
-    <script src="js/tweet-heatmap.js"></script>
-  </head>
+  <title>Tweet Heatmap</title>
 
-  <body>
-    <div ng-controller="search">
-      {{hello}}
-    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.0/angular.min.js"></script>
+  <script src="http://openlayers.org/en/v3.12.1/build/ol.js" type="text/javascript"></script>
+  <script src="js/tweet-heatmap.js"></script>
+</head>
 
-  </body>
+<body>
+  <div ng-controller="search">
+    <form ng-submit="search()">
+      <input type="text" placeholder="Enter search query" ng-model="query">
+      <button type="submit">Search</button>
+    </form>
+    {{ result }}
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+    
+    </script>
+  </div>
+
+</body>
 </html>
