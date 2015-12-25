@@ -20,7 +20,7 @@ app.controller('search', function ($scope, $http) {
   // create the layer
   heatMapLayer = new ol.layer.Heatmap({
     source: $scope.data,
-    radius: 50
+    radius: 25
   });
 
   // add to the map
@@ -43,8 +43,7 @@ app.controller('search', function ($scope, $http) {
             var lonLat = new ol.geom.Point(coord);
 
             var pointFeature = new ol.Feature({
-              geometry: lonLat,
-              weight: 20
+              geometry: lonLat
             });
 
             $scope.data.addFeature(pointFeature);
