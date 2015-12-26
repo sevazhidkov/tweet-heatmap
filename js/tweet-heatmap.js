@@ -50,6 +50,10 @@ app.controller('search', function ($scope, $http) {
             $scope.loading = '';
           }
         }
+      }).
+      error(function (err) {
+        $scope.loading = "Error while loading tweets. Try again later";
+        console.log(err);
       });
     }
   }
