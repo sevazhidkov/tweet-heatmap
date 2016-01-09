@@ -31,7 +31,7 @@ app.controller('search', function ($scope, $http) {
       // Clear current points in map
       $scope.data.clear();
       $scope.loading = 'Loading...'
-      $http.jsonp('http://loklak.org/api/search.json?q=' + $scope.query).
+      $http.jsonp('http://loklak.org/api/search.json?callback=JSON_CALLBACK&q=' + $scope.query).
       success(function(data, status, headers, config) {
         //$scope.result = data;
         for (var i = 0; i < data.statuses.length; i++) {
